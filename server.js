@@ -40,7 +40,10 @@ const app = express();
 // =======================
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: (origin, callback) => {
+      // Allow all origins dynamically to support local dev and deployed frontend
+      callback(null, true);
+    },
     credentials: true,
   })
 );
